@@ -1,4 +1,4 @@
-from pocketflow import Node, BatchNode
+from framework import Node, BatchNode
 from utils.call_llm import call_llm
 
 class IdentifyAbstractions(Node):

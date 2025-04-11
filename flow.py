@@ -1,4 +1,4 @@
-from pocketflow import Flow
+from framework import Flow
 from nodes import (
     IdentifyAbstractions,
     SequenceAbstractions,

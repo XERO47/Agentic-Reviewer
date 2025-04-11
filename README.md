@@ -1,27 +1,46 @@
-#Codebase Knowledge Builder
+# 🤖 AI-Powered Code Reviewer & Codebase Assistant
 
-A powerful AI-powered tool to **automatically analyze and understand codebases**, built on the [PocketFlow](https://github.com/the-pocket/PocketFlow) framework. It:
+Have a conversation with your code! This intelligent assistant analyzes your codebase and allows you to chat with it as if it were a senior developer intimately familiar with your project.
 
-1. **Analyzes your code** to identify key abstractions
-2. **Generates comprehensive documentation** explaining each abstraction
-3. **Creates an interactive QA system** where you can ask questions about your code
+Built on the [PocketFlow](https://github.com/the-pocket/PocketFlow) framework, this tool combines AI code analysis with an interactive chat interface to:
 
-## 📋 Features
+1. **Analyze your codebase** to identify key components and their relationships
+2. **Generate detailed documentation** automatically explaining each abstraction
+3. **Answer your questions** about how the code works, why decisions were made, and where to find specific functionality
+4. **Review your code** by examining patterns, identifying potential issues, and suggesting improvements
 
-- **Codebase Analysis**: Automatically identifies and sequences the core abstractions in your code
-- **Knowledge Document**: Generates a detailed Markdown document explaining your codebase
-- **Interactive Q&A**: Ask questions about your code and get informed answers
-- **Agentic File Access**: The system can request specific files when needed to answer questions
-- **GitHub Integration**: Analyze any GitHub repository with a single command
+## 💬 Chat With Your Codebase
+
+Instead of spending hours trying to understand unfamiliar code, just ask questions in plain English:
+
+```
+> How does authentication work in this app?
+> What design patterns are used in the data processing module?
+> Where is the API rate limiting implemented?
+> What would be the best way to implement a new feature for X?
+```
+
+Your AI assistant analyzes the codebase knowledge it built and responds with accurate, contextual answers - even accessing specific code files when needed for deeper insights.
+
+## 📋 Key Features
+
+- **Interactive Code Chat**: Have a natural conversation about your codebase with an AI that understands its structure
+- **Automatic Knowledge Building**: Identifies core abstractions and generates comprehensive documentation
+- **Intelligent File Access**: The system can request specific files when needed to answer detailed questions
+- **Code Review Capabilities**: Get insights into code quality, patterns, and potential improvements
+- **GitHub Integration**: Analyze any GitHub repository with a single command - no local clone needed
 
 ## 🔧 Installation
 
 1. Clone this repository:
-   
+   ```bash
+   git clone https://github.com/XERO47/Agentic-Reviewer
+   cd Agentic-Reviewer
+   ```
 
 2. Install dependencies:
    ```bash
-   pip install pocketflow gitpython
+   pip install requirements.txt
    ```
 
 3. Set up your API keys (either Google Gemini or OpenAI):
@@ -37,72 +56,93 @@ A powerful AI-powered tool to **automatically analyze and understand codebases**
    export OPENAI_API_KEY="your-openai-api-key"
    ```
 
-## 🚀 Usage
+## 🚀 How To Use
 
-### Step 1: Generate Codebase Knowledge Document
+### Step 1: Build Knowledge of Your Codebase
 
-Analyze your local codebase:
+First, let the AI analyze your code:
+
 ```bash
 python main.py --dir path/to/your/codebase
 ```
 
-Or analyze a GitHub repository:
+Or analyze directly from GitHub:
 ```bash
 python main.py --github https://github.com/username/repo
 ```
 
-The tool will generate a `codebase_knowledge.md` document containing:
-- An overview of your codebase's purpose and architecture
-- A logical sequence for learning the codebase
-- Detailed explanations of each abstraction with real code examples
+This creates a `codebase_knowledge.md` document with a comprehensive analysis of your codebase architecture.
 
-### Step 2: Ask Questions About Your Codebase
+### Step 2: Start Chatting With Your Codebase
 
-Once the knowledge document is generated, you can use the interactive Q&A system:
+Launch the interactive chat session:
 
 ```bash
 python codebase_qa.py --knowledge codebase_knowledge.md --dir path/to/your/codebase
 ```
 
-Or for a GitHub repository:
+Or for GitHub repositories:
 ```bash
 python codebase_qa.py --knowledge codebase_knowledge.md --github https://github.com/username/repo
 ```
 
-Then simply ask questions about your codebase:
-```
-> What are the main abstractions in this codebase?
-> How does the X class work?
-> Show me an example of Y in use
-```
-
-The system will provide answers based on the generated knowledge document and will automatically request specific files when needed for deeper analysis.
-
-## 📝 Example
-
-Here's a sample interaction with the Q&A system:
+Then start asking questions like you would to a senior developer who knows the codebase inside out:
 
 ```
-> What is the main purpose of this codebase?
+> What are the core components of this system?
+> How does error handling work across the application?
+> Can you explain the data flow from user input to database storage?
+```
 
-This codebase is designed to automate the process of answering questions from online assignments and generating comprehensive HTML reports of the results. It uses web browsing capabilities, Large Language Models (LLMs), and structured data parsing.
+## 📝 Example Conversation
 
-The system can navigate to an assignment link, extract questions and options, use an LLM to generate answers based on a knowledge base, and then create a formatted HTML report with questions, answers, explanations, and related topics.
+Here's how a conversation with your codebase might look:
 
-> How does the Browser abstraction work?
+```
+> What's the overall architecture of this system?
 
-[REQUEST_FILE: browser_use.py]
+This application follows a layered architecture with clear separation of concerns:
 
-Looking at the codebase, the Browser abstraction serves as a wrapper around a web browser (Chrome), providing methods to interact with web pages programmatically.
+1. **Presentation Layer**: React-based frontend components in /src/components
+2. **Service Layer**: API controllers and service classes in /src/services
+3. **Data Access Layer**: Repository pattern implementation in /src/repositories
+4. **Domain Model**: Core business entities in /src/models
 
-The Browser class is initialized with a BrowserConfig that specifies settings like the Chrome executable path and headless mode. It handles navigation to URLs, extracting information, and simulating user interactions.
+The system uses dependency injection throughout and follows the CQRS pattern for more complex operations.
 
-Key methods likely include initialization, navigation methods (goto), interaction methods (clicking buttons, scrolling), and extraction methods for getting data from pages...
+> Show me how authentication works
+
+[REQUEST_FILE: src/services/auth-service.js]
+
+Based on the codebase, authentication is implemented using JWT tokens with the following flow:
+
+1. User credentials are validated in `AuthService.login()`
+2. Upon successful validation, a JWT token is generated with user claims
+3. Token is returned to client and stored in localStorage
+4. Subsequent requests use an auth interceptor to attach the token
+5. Protected routes use the `AuthGuard` middleware to verify tokens
+
+Here's the key authentication method from auth-service.js:
+```javascript
+async login(username, password) {
+  const user = await this.userRepo.findByUsername(username);
+  if (!user || !this.verifyPassword(password, user.passwordHash)) {
+    throw new AuthenticationError('Invalid credentials');
+  }
+  
+  const token = jwt.sign({
+    id: user.id,
+    roles: user.roles
+  }, config.jwtSecret, { expiresIn: '24h' });
+  
+  return { token, user: this.sanitizeUser(user) };
+}
+```
 ```
 
 ## ⚠️ Limitations
 
-- The quality of analysis depends on the quality of your codebase and comments
+- The quality of analysis depends on the clarity and structure of your codebase
 - Large codebases may take longer to process and might exceed token limits
 - The system requires either a Google Gemini API key or an OpenAI API key
 
