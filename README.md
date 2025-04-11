@@ -34,13 +34,13 @@ Your AI assistant analyzes the codebase knowledge it built and responds with acc
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/XERO47/Agentic-Reviewer
-   cd Agentic-Reviewer
+   git clone https://github.com/your-username/ai-code-assistant
+   cd ai-code-assistant
    ```
 
 2. Install dependencies:
    ```bash
-   pip install requirements.txt
+   pip install pocketflow gitpython
    ```
 
 3. Set up your API keys (either Google Gemini or OpenAI):
@@ -58,9 +58,7 @@ Your AI assistant analyzes the codebase knowledge it built and responds with acc
 
 ## 🚀 How To Use
 
-### Step 1: Build Knowledge of Your Codebase
-
-First, let the AI analyze your code:
+It's just one command to analyze your code and start chatting:
 
 ```bash
 python main.py --dir path/to/your/codebase
@@ -71,27 +69,35 @@ Or analyze directly from GitHub:
 python main.py --github https://github.com/username/repo
 ```
 
-This creates a `codebase_knowledge.md` document with a comprehensive analysis of your codebase architecture.
+This will:
+1. Analyze your codebase to build a knowledge document
+2. Automatically launch an interactive chat interface
+3. Let you ask questions about your code to understand it better
 
-### Step 2: Start Chatting With Your Codebase
+### Command Options
 
-Launch the interactive chat session:
+- `--dir PATH` - Specify the local codebase directory to analyze (default: current directory)
+- `--github URL` - Analyze a GitHub repository instead of a local directory
+- `--output FILE` - Set the output file for the knowledge document (default: codebase_knowledge.md)
+- `--chat` - Start the chat interface after building knowledge (enabled by default)
+- `--skip-build` - Skip knowledge building and use an existing knowledge document
+- `--example` - Use a built-in example codebase for demonstration purposes
 
+### Common Use Cases
+
+**Only build the knowledge document without chatting:**
 ```bash
-python codebase_qa.py --knowledge codebase_knowledge.md --dir path/to/your/codebase
+python main.py --dir path/to/codebase --chat=False
 ```
 
-Or for GitHub repositories:
+**Just chat using an existing knowledge document:**
 ```bash
-python codebase_qa.py --knowledge codebase_knowledge.md --github https://github.com/username/repo
+python main.py --dir path/to/codebase --skip-build
 ```
 
-Then start asking questions like you would to a senior developer who knows the codebase inside out:
-
-```
-> What are the core components of this system?
-> How does error handling work across the application?
-> Can you explain the data flow from user input to database storage?
+**Analyze a GitHub repo and save knowledge to a custom file:**
+```bash
+python main.py --github https://github.com/username/repo --output my_project_docs.md
 ```
 
 ## 📝 Example Conversation
