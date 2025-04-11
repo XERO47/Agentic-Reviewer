@@ -1,4 +1,4 @@
-# 🧠 PocketFlow Codebase Knowledge Builder
+#Codebase Knowledge Builder
 
 A powerful AI-powered tool to **automatically analyze and understand codebases**, built on the [PocketFlow](https://github.com/the-pocket/PocketFlow) framework. It:
 
@@ -17,10 +17,7 @@ A powerful AI-powered tool to **automatically analyze and understand codebases**
 ## 🔧 Installation
 
 1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/pocketflow-codebase-knowledge
-   cd pocketflow-codebase-knowledge
-   ```
+   
 
 2. Install dependencies:
    ```bash
