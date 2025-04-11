@@ -10,7 +10,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Learn more about calling the LLM: https://the-pocket.github.io/PocketFlow/utility_function/llm.html
 def call_llm(prompt):    
     # Try Google Gemini first
     api_key = os.environ.get("GOOGLE_API_KEY")
@@ -60,14 +59,14 @@ def call_llm(prompt):
                                 break
                 
                 if gemini_model:
-                    logger.info("🤖 Using Google Gemini model: %s", gemini_model)
+                    # logger.info("🤖 Using Google Gemini model: %s", gemini_model)
                     model = genai.GenerativeModel(gemini_model)
                 else:
-                    logger.info("🤖 No specific Gemini model found. Using gemini-1.5-pro...")
+                    # logger.info("🤖 No specific Gemini model found. Using gemini-1.5-pro...")
                     model = genai.GenerativeModel("gemini-1.5-pro")
             except Exception as model_error:
-                logger.warning("⚠️ Error listing models: %s", model_error)
-                logger.info("🤖 Falling back to gemini-1.5-pro...")
+                # logger.warning("⚠️ Error listing models: %s", model_error)
+                # logger.info("🤖 Falling back to gemini-1.5-pro...")
                 model = genai.GenerativeModel("gemini-1.5-pro")
             
             # Generate content with appropriate safety settings
@@ -84,7 +83,7 @@ def call_llm(prompt):
                 "top_k": 40,
             }
             
-            logger.info("🧠 Generating content with Google Gemini...")
+            # logger.info("🧠 Generating content with Google Gemini...")
             response = model.generate_content(
                 prompt,
                 safety_settings=safety_settings,
