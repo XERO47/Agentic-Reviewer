@@ -39,7 +39,7 @@ Your AI assistant analyzes the codebase knowledge it built and responds with acc
 
 2. Install dependencies:
    ```bash
-   pip install pocketflow gitpython
+   pip install -r requirements.txt
    ```
 
 3. Set up your API keys (either Google Gemini or OpenAI):
