@@ -33,7 +33,7 @@ Your AI assistant analyzes the codebase knowledge it built and responds with acc
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/ai-code-assistant
+   git clone https://github.com/XERO47/Agentic-Reviewer
    cd ai-code-assistant
    ```
 
