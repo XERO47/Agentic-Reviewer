@@ -2,8 +2,7 @@
 
 Have a conversation with your code! This intelligent assistant analyzes your codebase and allows you to chat with it as if it were a senior developer intimately familiar with your project.
 
-Built on the [PocketFlow](https://github.com/the-pocket/PocketFlow) framework, this tool combines AI code analysis with an interactive chat interface to:
-
+This tool can do:
 1. **Analyze your codebase** to identify key components and their relationships
 2. **Generate detailed documentation** automatically explaining each abstraction
 3. **Answer your questions** about how the code works, why decisions were made, and where to find specific functionality
