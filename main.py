@@ -153,10 +153,10 @@ class CodebaseQA:
         """Get an answer to a question about the codebase."""
         # Add the question to the history
         self.history.append({"role": "user", "content": question})
-        
+
         # Prepare the context for the LLM
         context = self.knowledge_content
-        
+
         # Create the prompt for the LLM
         prompt = f"""You are a helpful assistant answering questions about a codebase. 
 Use the provided codebase knowledge document to answer the question.
@@ -178,44 +178,55 @@ PREVIOUS CONVERSATION:
 
 Answer the question thoroughly but concisely. If you request a file, explain why you need it.
 """
-        
+
         # Get response from LLM
         response = call_llm(prompt)
-        
+
         # Check if the LLM requested a file
         while "[REQUEST_FILE:" in response:
             # Extract the file pattern
             file_request_start = response.find("[REQUEST_FILE:")
             file_request_end = response.find("]", file_request_start)
             file_pattern = response[file_request_start+14:file_request_end].strip()
-            
+
             # Find matching files
             matching_files = self.find_files(file_pattern)
-            
+
             if matching_files:
                 file_contents = ""
                 # Limit to first 3 matches if there are many
                 for file_path in matching_files[:3]:
                     content = self.get_file_content(file_path)
                     file_contents += f"\n\nFILE: {file_path}\n```\n{content}\n```\n"
-                
+
                 if len(matching_files) > 3:
                     file_contents += f"\n\nNote: {len(matching_files) - 3} more files matched but were not shown."
             else:
                 file_contents = f"No files matching '{file_pattern}' were found."
-            
+
             # Update the prompt with the file contents
             prompt += f"\n\nYou requested file: {file_pattern}\n{file_contents}\n\nPlease continue your answer with this information."
-            
+
+            # Inform the user about the file request and its results
+            print(f"\n🔍 The assistant requested the file(s) matching: '{file_pattern}'")
+            if matching_files:
+                print(f"📂 Found {len(matching_files)} matching file(s). Showing up to 3:")
+                for file_path in matching_files[:3]:
+                    print(f"- {file_path}")
+                if len(matching_files) > 3:
+                    print(f"...and {len(matching_files) - 3} more file(s) not shown.")
+            else:
+                print("❌ No matching files found.")
+
             # Get updated response from LLM
             response = call_llm(prompt)
-            
+
             # Remove the request file part from the response
             response = response.replace(f"[REQUEST_FILE: {file_pattern}]", "")
-        
+
         # Add the response to the history
         self.history.append({"role": "assistant", "content": response})
-        
+
         return response
     
     def _format_history(self):
