@@ -1,9 +1,5 @@
-# Time to have a conversation with your codebase...
-## Code Reviewer & Codebase Assistant
-
-
-![demo](https://github.com/user-attachments/assets/d7b318bf-3c12-4ca4-8ba1-f4bfdf344c58)
-![image](https://github.com/user-attachments/assets/ac838de7-fd88-4e9d-b961-c4f85d2d82fd)
+## Time to have a conversation with your codebase...
+# Code Reviewer & Codebase Assistant
 
 Have a conversation with your code! This intelligent assistant analyzes your codebase and allows you to chat with it as if it were a senior developer intimately familiar with your project.
 
@@ -17,12 +13,9 @@ This tool can do:
 
 Instead of spending hours trying to understand unfamiliar code, just ask questions in plain English:
 
-```
-> How does authentication work in this app?
-> What design patterns are used in the data processing module?
-> Where is the API rate limiting implemented?
-> What would be the best way to implement a new feature for X?
-```
+![demo](https://github.com/user-attachments/assets/d7b318bf-3c12-4ca4-8ba1-f4bfdf344c58)
+![image](https://github.com/user-attachments/assets/ac838de7-fd88-4e9d-b961-c4f85d2d82fd)
+
 
 Your AI assistant analyzes the codebase knowledge it built and responds with accurate, contextual answers - even accessing specific code files when needed for deeper insights.
 
