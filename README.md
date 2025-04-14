@@ -1,4 +1,8 @@
-# 🤖 AI-Powered Code Reviewer & Codebase Assistant
+# Code Reviewer & Codebase Assistant
+
+
+![demo](https://github.com/user-attachments/assets/d7b318bf-3c12-4ca4-8ba1-f4bfdf344c58)
+![image](https://github.com/user-attachments/assets/ac838de7-fd88-4e9d-b961-c4f85d2d82fd)
 
 Have a conversation with your code! This intelligent assistant analyzes your codebase and allows you to chat with it as if it were a senior developer intimately familiar with your project.
 
