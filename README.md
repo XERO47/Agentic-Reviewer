@@ -1,4 +1,5 @@
-# Code Reviewer & Codebase Assistant
+# Time to have a conversation with your codebase...
+## Code Reviewer & Codebase Assistant
 
 
 ![demo](https://github.com/user-attachments/assets/d7b318bf-3c12-4ca4-8ba1-f4bfdf344c58)
