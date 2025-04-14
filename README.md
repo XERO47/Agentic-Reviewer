@@ -2,8 +2,7 @@
 
 Have a conversation with your code! This intelligent assistant analyzes your codebase and allows you to chat with it as if it were a senior developer intimately familiar with your project.
 
-Built on the [PocketFlow](https://github.com/the-pocket/PocketFlow) framework, this tool combines AI code analysis with an interactive chat interface to:
-
+This tool can do:
 1. **Analyze your codebase** to identify key components and their relationships
 2. **Generate detailed documentation** automatically explaining each abstraction
 3. **Answer your questions** about how the code works, why decisions were made, and where to find specific functionality
@@ -34,13 +33,13 @@ Your AI assistant analyzes the codebase knowledge it built and responds with acc
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/ai-code-assistant
+   git clone https://github.com/XERO47/Agentic-Reviewer
    cd ai-code-assistant
    ```
 
 2. Install dependencies:
    ```bash
-   pip install pocketflow gitpython
+   pip install -r requirements.txt
    ```
 
 3. Set up your API keys (either Google Gemini or OpenAI):
